@@ -1,0 +1,1 @@
+ALTER TABLE "verification_tokens" ADD COLUMN "next_email_at" timestamp DEFAULT now();

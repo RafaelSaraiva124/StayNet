@@ -1,0 +1,57 @@
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: hotel-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hotel-web
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      REDIS_URL: redis://redis:6379
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: npm run dev
+    restart: unless-stopped
+
+  stripe-cli:
+    image: stripe/stripe-cli:latest
+    container_name: hotel-stripe-cli
+    env_file:
+      - .env
+    command: >
+      listen
+      --api-key ${STRIPE_SECRET_KEY}
+      --device-name ${STRIPE_DEVICE_NAME}
+      --forward-to web:3000/api/webhooks/stripe
+    depends_on:
+      - web
+    restart: unless-stopped
+
+
+volumes:
+  redis_data:
