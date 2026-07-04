@@ -61,8 +61,6 @@ The platform supports multiple user roles with different permissions and include
 
 <img width="840" height="830" alt="Arquitetura" src="https://github.com/user-attachments/assets/63dd8b7f-5bba-43b7-9b12-d3e7ceed1b99" />
 
-```
-
 ---
 
 ## 🚀 Tech Stack
