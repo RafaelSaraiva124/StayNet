@@ -125,7 +125,7 @@ Hotel images are stored in **Cloudinary**, keeping the primary database lightwei
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Author's
 
 **Rafael Saraiva**
 
@@ -133,10 +133,12 @@ Software Engineer
 
 Portfolio: https://portfolio.g0dr.pt
 
-LinkedIn: https://linkedin.com/in/your-linkedin
+LinkedIn: www.linkedin.com/in/rafael-saraiva-517bb6418
+
+**Gustavo Silva**
+
+Software Engineer
+
+LinkedIn: https://www.linkedin.com/in/gustavo-soares-276531313
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License.
